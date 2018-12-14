@@ -9,8 +9,8 @@ var Schema       = mongoose.Schema;
 var PageSchema   = new Schema({
     id: Number,
     name: String,
-    user_id: Number,
-    page_content: String
+    page_content: Object,
+    html_elements: Object
 });
 
 module.exports = mongoose.model('Page', PageSchema);

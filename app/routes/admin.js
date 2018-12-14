@@ -1,3 +1,6 @@
+// get rid of the CORS policy confinement for testing
+const cors = require('cors')
+
 const path = require('path');
 
 const express = require('express');
@@ -6,19 +9,19 @@ const adminController = require('../controllers/admin');
 
 const router = express.Router();
 
-// /admin/add-page => GET
-router.get('/add-page', adminController.getAddPage);
-
 // /admin/pages => GET
-router.get('/pages', adminController.getPages);
+router.get('/pages', cors(), adminController.getPages);
 
 // /admin/add-page => POST
-router.post('/add-page', adminController.postAddPage);
+router.post('/add-page', cors(), adminController.postAddPage);
 
-router.get('/edit-page/:pageId', adminController.getEditPage);
+// /admin/edit-page => GET
+router.get('/edit-page/:pageId', cors(), adminController.getEditPage);
 
-router.post('/edit-page', adminController.postEditPage);
+// /admin/edit-page => POST
+router.post('/edit-page', cors(), adminController.postEditPage);
 
-router.post('/delete-page', adminController.postDeletePage);
+// /admin/delete-page => POST
+router.post('/delete-page', cors(), adminController.postDeletePage);
 
 module.exports = router;
